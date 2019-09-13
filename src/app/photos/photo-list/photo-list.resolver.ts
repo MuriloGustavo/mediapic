@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { PhotoService } from './photo.service';
-import { Photo } from './photo.model';
+import { PhotoService } from '../photo/photo.service';
+import { Photo } from '../photo/photo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class PhotoListResolver implements Resolve<Observable<Photo[]>> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Photo[]> {
     const userName = route.params.userName;
-    return this.photoService.listFromUser(userName);
+    return this.photoService.listFromUserPaginated(userName, 1);
   }
 
 }
